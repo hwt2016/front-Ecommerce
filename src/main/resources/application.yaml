@@ -1,12 +1,11 @@
 server:
-  port: 8088
+  port: 9000
 spring:
   velocity:
     charset: UTF-8
     properties.input.encoding: UTF-8
     properties.output.encoding: UTF-8
     resourceLoaderPath: classpath:/templates/
-    prefix: /
     # toolbox-config-location: /WEB-INF/toolbox.xml
   datasource:
     name: commerce

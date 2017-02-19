@@ -1,5 +1,6 @@
 package com.plugin;
 
+import org.junit.Test;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
@@ -70,13 +71,12 @@ public class PaginationPlugin extends PluginAdapter {
         return true;
     }
 
+    @Test
     public static void generate() {
         String config = PaginationPlugin.class.getClassLoader().getResource(
                 "mybatisGeneratorConfig.xml").getFile();
         String[] arg = { "-configfile", config, "-overwrite" };
         ShellRunner.main(arg);
     }
-    public static void main(String[] args) {
-        generate();
-    }
+
 }

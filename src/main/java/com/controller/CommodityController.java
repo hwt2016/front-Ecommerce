@@ -37,7 +37,7 @@ public class CommodityController {
     public String view(@PathVariable("id") Long id, ModelMap modelMap) {
         CommodityDO commodity = commodityDOMapper.selectByPrimaryKey(id);
         modelMap.addAttribute("commodity", commodity);
-        return "/commodity/commodityInfo";
+        return "commodity/commodityInfo";
     }
 
     //根据页面获取商品类表
@@ -47,7 +47,7 @@ public class CommodityController {
         List<CommodityVO> commoditys = commodityService.searchCommoditysByPage(pager);
         modelMap.addAttribute("commoditys", commoditys);
         modelMap.addAttribute("pager", pager);
-        return "/commodity/commodityList";
+        return "commodity/commodityList";
     }
 
     //根据id编辑货品
@@ -57,7 +57,7 @@ public class CommodityController {
         modelMap.addAttribute("commodity", commodity);
         modelMap.addAttribute("operateEn", "edit/" + id);
         modelMap.addAttribute("operateCh", OperateEnum.UPDATE.code());
-        return "/commodity/add";
+        return "commodity/add";
     }
 
     //编辑货品
@@ -65,7 +65,7 @@ public class CommodityController {
     public String editCommodity(@Valid CommodityDO commodityDO, BindingResult bindingResult, ModelMap modelMap) {
         if(bindingResult.hasErrors()){
             modelMap.addAttribute("bindingResult",bindingResult);
-            return "/commodity/add";
+            return "commodity/add";
         }
         commodityDO.setUpdatetime(new Date(System.currentTimeMillis()));
         commodityDOMapper.updateByPrimaryKeySelective(commodityDO);
@@ -78,7 +78,7 @@ public class CommodityController {
         modelMap.addAttribute("commodity", new CommodityDO());
         modelMap.addAttribute("operateEn", "add");
         modelMap.addAttribute("operateCh", OperateEnum.ADD.code());
-        return "/commodity/add";
+        return "commodity/add";
     }
 
 
@@ -87,7 +87,7 @@ public class CommodityController {
     public String addCommodity(@Valid CommodityDO commodityDO, BindingResult bindingResult, ModelMap modelMap) {
         if(bindingResult.hasErrors()){
             modelMap.addAttribute("bindingResult",bindingResult);
-            return "/commodity/add";
+            return "commodity/add";
         }
         commodityDO.setShopId(2L);//这里需要完善
         commodityDO.setCreatetime(new Date(System.currentTimeMillis()));
@@ -99,6 +99,6 @@ public class CommodityController {
     //商品细节
     @RequestMapping(value = "/commodity_detail",method = RequestMethod.GET)
     public String pricing_tables(){
-        return "/commodity/commodity_detail";
+        return "commodity/commodity_detail";
     }
 }
