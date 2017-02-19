@@ -47,7 +47,7 @@ public class CommodityController {
         List<CommodityVO> commoditys = commodityService.searchCommoditysByPage(pager);
         modelMap.addAttribute("commoditys", commoditys);
         modelMap.addAttribute("pager", pager);
-        return "/front/commodityList";
+        return "/commodity/commodityList";
     }
 
     //根据id编辑货品
@@ -97,8 +97,8 @@ public class CommodityController {
     }
 
     //商品细节
-    @RequestMapping(value = "/product_detail",method = RequestMethod.GET)
+    @RequestMapping(value = "/commodity_detail",method = RequestMethod.GET)
     public String pricing_tables(){
-        return "/front/product_detail";
+        return "/commodity/commodity_detail";
     }
 }
