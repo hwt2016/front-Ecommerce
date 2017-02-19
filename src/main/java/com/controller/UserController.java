@@ -40,7 +40,7 @@ public class UserController {
     public String view(@PathVariable("id") Long id, ModelMap modelMap) {
         UserDO user = userDOMapper.selectByPrimaryKey(id);
         modelMap.addAttribute("user", user);
-        return "/user/userInfo";
+        return "user/userInfo";
     }
 
     @RequestMapping("/userList/{page}")
@@ -49,7 +49,7 @@ public class UserController {
         List<UserDO> users = userService.searchUsersByPage(pager);
         modelMap.addAttribute("users", users);
         modelMap.addAttribute("pager", pager);
-        return "/user/userList";
+        return "user/userList";
     }
 
     @RequestMapping("/edit/{id}")
@@ -58,18 +58,18 @@ public class UserController {
         modelMap.addAttribute("user", user);
         modelMap.addAttribute("operateEn", "edit/" + id);
         modelMap.addAttribute("operateCh", OperateEnum.UPDATE.code());
-        return "/user/add";
+        return "user/add";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editUser(@Valid UserDO userDO, BindingResult bindingResult, ModelMap modelMap) {
         if(bindingResult.hasErrors()){
             modelMap.addAttribute("bindingResult",bindingResult);
-            return "/user/add";
+            return "user/add";
         }
         userDO.setUpdatetime(new Date(System.currentTimeMillis()));
         userDOMapper.updateByPrimaryKeySelective(userDO);
-        return "redirect:/user/userList/1.vm";
+        return "redirect:user/userList/1.vm";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -77,24 +77,24 @@ public class UserController {
         modelMap.addAttribute("user", new UserDO());
         modelMap.addAttribute("operateEn", "add");
         modelMap.addAttribute("operateCh", OperateEnum.ADD.code());
-        return "/user/add";
+        return "user/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addUser(@Valid UserDO userDO, BindingResult bindingResult, ModelMap modelMap) {
         if(bindingResult.hasErrors()){
             modelMap.addAttribute("bindingResult",bindingResult);
-            return "/user/add";
+            return "user/add";
         }
         userDO.setCreatetime(new Date(System.currentTimeMillis()));
         userDO.setStatus(UserStatusEnum.NORMAL.code());
         userDOMapper.insert(userDO);
-        return "redirect:/user/userList/1.vm";
+        return "redirect:user/userList/1.vm";
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String userLogin(ModelMap modelMap){
-        return "/front/login";
+        return "front/login";
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
@@ -102,10 +102,9 @@ public class UserController {
         UserDO user= userService.selectUserByUserName(userDO.getUsername());
         if(user !=null && userDO.getPassword().equals(user.getPassword())){
             session.setAttribute("user",userDO);
-            modelMap.addAttribute("user",userDO);
             return "redirect:/front/index";
         }else
-            return "/user/login";
+            return "user/login";
     }
 
 }

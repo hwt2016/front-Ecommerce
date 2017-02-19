@@ -287,6 +287,7 @@
             </div>
         </div>
     </section>
+    #parse("/templates/layout/page.vm")
     <section id="copyright">
         <span>Copyright 2013 Crack HTML |  All right reserved.</span>
     </section>

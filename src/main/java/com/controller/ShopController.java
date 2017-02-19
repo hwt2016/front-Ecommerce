@@ -93,6 +93,7 @@ public class ShopController {
             return "/shop/add";
         }
         shopDO.setCreatetime(new Date(System.currentTimeMillis()));
+        shopDO.setUpdatetime(new Date(System.currentTimeMillis()));
         shopDO.setStatus(ShopStatusEnum.NORMAL.code());
         shopDOMapper.insert(shopDO);
         return "redirect:/shop/shopList/1.vm";

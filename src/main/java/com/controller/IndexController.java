@@ -1,6 +1,8 @@
 package com.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,9 +18,11 @@ public class IndexController {
         return "/front/index";
     }
 
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String list(){
-        return "/front/list";
+    @RequestMapping(value = "/list/{page}",method = RequestMethod.GET)
+    public String list(@PathVariable("page") Integer page, ModelMap modelMap){
+        System.out.println("page="+page);
+        modelMap.addAttribute("a","123");
+        return "/front/commodityList";
     }
 
     @RequestMapping(value = "/new",method = RequestMethod.GET)
