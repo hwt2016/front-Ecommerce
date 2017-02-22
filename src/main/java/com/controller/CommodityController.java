@@ -65,20 +65,20 @@ public class CommodityController {
     public String editCommodity(@Valid CommodityDO commodityDO, BindingResult bindingResult, ModelMap modelMap) {
         if(bindingResult.hasErrors()){
             modelMap.addAttribute("bindingResult",bindingResult);
-            return "commodity/add";
+            return "commodity/commodity_add";
         }
         commodityDO.setUpdatetime(new Date(System.currentTimeMillis()));
         commodityDOMapper.updateByPrimaryKeySelective(commodityDO);
         return "redirect:/commodity/commodityList/1.vm";
     }
 
-    //添加货品
+    //添加商品
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addCommodity(ModelMap modelMap) {
         modelMap.addAttribute("commodity", new CommodityDO());
         modelMap.addAttribute("operateEn", "add");
         modelMap.addAttribute("operateCh", OperateEnum.ADD.code());
-        return "commodity/add";
+        return "commodity/commodity_add";
     }
 
 
@@ -87,18 +87,21 @@ public class CommodityController {
     public String addCommodity(@Valid CommodityDO commodityDO, BindingResult bindingResult, ModelMap modelMap) {
         if(bindingResult.hasErrors()){
             modelMap.addAttribute("bindingResult",bindingResult);
-            return "commodity/add";
+            return "commodity/commodity_add";
         }
         commodityDO.setShopId(2L);//这里需要完善
+        commodityDO.setCommodityImage(commodityDO.getCommodityName());
         commodityDO.setCreatetime(new Date(System.currentTimeMillis()));
         commodityDO.setUpdatetime(new Date(System.currentTimeMillis()));
         commodityDOMapper.insert(commodityDO);
-        return "redirect:/commodity/commodityList/1.vm";
+        return "redirect:/commodity/commodity_detail";
     }
 
     //商品细节
     @RequestMapping(value = "/commodity_detail",method = RequestMethod.GET)
-    public String pricing_tables(){
+    public String commodity_detail(){
         return "/commodity/commodity_detail";
     }
+
+
 }
