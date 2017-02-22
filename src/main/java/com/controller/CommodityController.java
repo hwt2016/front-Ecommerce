@@ -99,6 +99,6 @@ public class CommodityController {
     //商品细节
     @RequestMapping(value = "/commodity_detail",method = RequestMethod.GET)
     public String pricing_tables(){
-        return "commodity/commodity_detail";
+        return "/commodity/commodity_detail";
     }
 }
