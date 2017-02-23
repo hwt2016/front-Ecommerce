@@ -20,5 +20,7 @@ public class AddInterceptor extends WebMvcConfigurerAdapter {
         ir.excludePathPatterns("/login");
         ir.excludePathPatterns("/register");
         ir.excludePathPatterns("/user/login");
+        ir.excludePathPatterns("/createPolicy/*");
+
     }
 }
