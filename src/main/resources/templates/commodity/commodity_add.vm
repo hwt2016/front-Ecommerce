@@ -15,6 +15,7 @@
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="../front/js/app.js"></script>
     <link href="../front/css/style.css" rel="stylesheet">
+    <link href="../plupload/style.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -81,18 +82,27 @@
                                         <span id="msg" style="color:red">$!bindingResult.getFieldError("description").getDefaultMessage()</span>
                                     #end
                                 </td>
-                                <td>
-
-                                </td>
                             </tr>
                         </table>
 
+                        <!-- 图片上传模块-->
+                        <h4>您所选择的文件列表：</h4>
+                        <div id="ossfile">你的浏览器不支持flash,Silverlight或者HTML5！</div>
+                        <br/>
 
+                        <div id="container">
+                            <a id="selectfiles" href="javascript:void(0);" class='btn'>选择文件</a>
+                            <a id="postfiles" href="javascript:void(0);" class='btn'>开始上传</a>
+                        </div>
+                        <pre id="console"></pre>
+
+                        <!-- end 图片上传 -->
                         <div class="control-group">
                             <div class="controls">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
+
                     </form>
 
                 </div>
@@ -109,4 +119,6 @@
 </div> <!-- /container -->
 
 </body>
+<script type="text/javascript" src="/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="/plupload/upload.js"></script>
 </html>

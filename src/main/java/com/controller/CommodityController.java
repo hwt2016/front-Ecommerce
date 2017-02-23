@@ -103,5 +103,12 @@ public class CommodityController {
         return "/commodity/commodity_detail";
     }
 
+//    //商品图片上传
+//    @RequestMapping(value = "/createPolicy/{dir}")
+//    @ResponseBody
+//    public String createPolicy(@PathVariable("dir") String dir){
+//        return PostObjectPolicy.createPolicy(dir+"/").toJSONString();
+//    }
+
 
 }
