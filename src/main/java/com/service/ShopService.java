@@ -43,4 +43,15 @@ public class ShopService {
         }
         return shopVOS;
     }
+
+    //通过用户的信息获取用户的店铺信息
+    public ShopDO selectShopByUser(UserDO userDO){
+        ShopDOExample shopDOExample= new ShopDOExample();
+        ShopDOExample.Criteria criteria=shopDOExample.createCriteria();
+        criteria.andUserIdEqualTo(userDO.getId());//根据用户的id找到店铺
+        List<ShopDO> shopDOS=shopDOMapper.selectByExample(shopDOExample);
+        if(shopDOS.size()==0)
+            return  null;
+        return shopDOS.get(0);//由于店铺唯一，所以返回一个即可
+    }
 }

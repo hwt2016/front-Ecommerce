@@ -14,14 +14,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by jiangchao08 on 16/12/5.
@@ -99,12 +96,32 @@ public class UserController {
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String userLogin(UserDO userDO, ModelMap modelMap, HttpSession session){
-        UserDO user= userService.selectUserByUserName(userDO.getUsername());
+        UserDO user= userService.selectUserByNickName(userDO.getNickname());
         if(user !=null && userDO.getPassword().equals(user.getPassword())){
-            session.setAttribute("user",userDO);
+            session.setAttribute("nickname",userDO.getNickname());
             return "redirect:/front/index";
         }else
             return "user/login";
+    }
+
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    public String userRegister( UserDO userDO,ModelMap modelMap,HttpSession session){
+
+
+        UserDO ado=userService.selectUserByNickName(userDO.getNickname());//获取管理员各属性
+        if(ado==null&&userDO.getNickname()!=null)
+        {
+            userDO.setCreatetime(new Date(System.currentTimeMillis()));
+            userService.insertUser(userDO);//如果尚未注册则注册
+            modelMap.addAttribute("msg","成功注册");
+            session.setAttribute("nickname",userDO.getNickname());
+            return "redirect:/front/index";
+        }
+        else
+        {
+            modelMap.addAttribute("msg","用户名已经存在");
+            return "login";//如果已注册则需重新注册(该步骤不清楚是否需要重新写页面，留待研究）
+        }
     }
 
 }

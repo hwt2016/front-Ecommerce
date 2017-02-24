@@ -86,7 +86,7 @@
                         </table>
 
                         <!-- 图片上传模块-->
-                        <h4>您所选择的文件列表：</h4>
+                        <h4>上传图片：</h4>
                         <div id="ossfile">你的浏览器不支持flash,Silverlight或者HTML5！</div>
                         <br/>
 
@@ -94,8 +94,9 @@
                             <a id="selectfiles" href="javascript:void(0);" class='btn'>选择文件</a>
                             <a id="postfiles" href="javascript:void(0);" class='btn'>开始上传</a>
                         </div>
-                        <pre id="console"></pre>
+                        <pre id="console" ></pre>
 
+                        <input hidden="hidden" id="shopId" name="shopId" value=$shopId />
                         <!-- end 图片上传 -->
                         <div class="control-group">
                             <div class="controls">

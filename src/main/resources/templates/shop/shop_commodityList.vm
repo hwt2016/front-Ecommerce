@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap e-Commerce Theme</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <link href="../../front/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+
+    #parse("/templates/front/menu.vm")
+
+    <div class="row-fluid">
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">Reorder Links</div>
+                <div class="pull-right">Where is my order?</div>
+            </div>
+            <div class="block-content collapse in">
+                <div class="span12">
+                    <p>
+                    <table class="table table-hover table-striped">
+                        <tr>
+                            <th>商品名称</th>
+                            <th>商品类别</th>
+                            <th>商品价格</th>
+                            <th>商品数量</th>
+                            <th>上架时间</th>
+                            <th>查询</th>
+                            <th>编辑</th>
+                        </tr>
+                        <tbody>
+                            #foreach($commodity in $commoditys)
+                            <tr onmouseenter="this.style.backgroundColor='powderblue'" onmouseleave="this.style.backgroundColor=''">
+                                <td>$!commodity.commodityName</td>
+                                <td>$!commodity.categoryName</td>
+                                <td>$!commodity.price</td>
+                                <td>$!commodity.count</td>
+                                <td>$!commodity.createtime</td>
+                                <td align="right">
+                                    <a href="/commodity/commodity_detail/$commodity.id" class="btn btn-primary btn-round btn-sm">查看详情</a>
+                                    <!--<a href="studentList.htm?action=StudentAction&event_submit_do_delete=any&id=$student.id&_tb_token_= $!csrfToken.ajaxUniqueToken" class="btn btn-danger btn-round btn-sm" onclick="alert('确定删除？')">删除</a>-->
+                                </td>
+                                <td align="right">
+                                    <a href="/commodity/edit/$commodity.id" class="btn btn-info btn-round btn-sm">编辑</a>
+                                </td>
+                            </tr>
+                            #end
+                        </tbody>
+                    </table>
+                    </p>
+
+                    <p>
+                        Use this to link to reorder boards or shar eyour work with others.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <hr>
+
+    <div class="footer">
+        <p>&copy; Company 2014</p>
+    </div>
+
+</div> <!-- /container -->
+
+</body>
+</html>

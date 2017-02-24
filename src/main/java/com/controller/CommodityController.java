@@ -1,10 +1,15 @@
 package com.controller;
 
+import com.OSS.ListObjects;
 import com.constant.PageSizeConstant;
 import com.em.OperateEnum;
 import com.entity.CommodityDO;
+import com.entity.ShopDO;
+import com.entity.UserDO;
 import com.mapper.CommodityDOMapper;
 import com.service.CommodityService;
+import com.service.ShopService;
+import com.service.UserService;
 import com.util.Pager;
 import com.vo.CommodityVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +37,12 @@ public class CommodityController {
 
     @Autowired
     private CommodityService commodityService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ShopService shopService;
 
     //根据id产看商品信息
     @RequestMapping("/{id}")
@@ -74,26 +86,29 @@ public class CommodityController {
 
     //添加商品
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String addCommodity(ModelMap modelMap) {
+    public String addCommodity(ModelMap modelMap, HttpSession session) {
         modelMap.addAttribute("commodity", new CommodityDO());
         modelMap.addAttribute("operateEn", "add");
         modelMap.addAttribute("operateCh", OperateEnum.ADD.code());
+        UserDO userDO = userService.selectUserByNickName(session.getAttribute("nickname").toString());
+        ShopDO shopDO = shopService.selectShopByUser(userDO);
+        modelMap.addAttribute("shopId",shopDO.getId());
         return "commodity/commodity_add";
     }
 
 
-    //添加货品
+    //添加商品
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addCommodity(@Valid CommodityDO commodityDO, BindingResult bindingResult, ModelMap modelMap) {
         if(bindingResult.hasErrors()){
             modelMap.addAttribute("bindingResult",bindingResult);
             return "commodity/commodity_add";
         }
-        commodityDO.setShopId(2L);//这里需要完善
         commodityDO.setCommodityImage(commodityDO.getCommodityName());
         commodityDO.setCreatetime(new Date(System.currentTimeMillis()));
         commodityDO.setUpdatetime(new Date(System.currentTimeMillis()));
         commodityDOMapper.insert(commodityDO);
+        System.out.print("添加成功");
         return "redirect:/commodity/commodity_detail";
     }
 
@@ -109,6 +124,19 @@ public class CommodityController {
 //    public String createPolicy(@PathVariable("dir") String dir){
 //        return PostObjectPolicy.createPolicy(dir+"/").toJSONString();
 //    }
+
+    @RequestMapping(value = "/commodity_detail/{commodityId}")
+    public String product_detail(@PathVariable ("commodityId") String commodityId,ModelMap modelMap){
+        CommodityDO commodityDO = commodityDOMapper.selectByPrimaryKey(Long.parseLong(commodityId));
+        modelMap.addAttribute("commodity",commodityDO);
+        ListObjects oss= new ListObjects();//连接OSS服务器
+        List <String> list=  oss.SelectImagesByUserDir(commodityDO.getCommodityImage());//获取图片列表
+        modelMap.addAttribute("ImageFirst",list.get(0));//获取首张展示的图片
+        modelMap.addAttribute("imgSmall","?x-oss-process=image/resize,m_lfit,h_90,w_80");//缩图，高低比例为：90：80
+        modelMap.addAttribute("imgBig","?x-oss-process=image/resize,m_lfit,h_550,w_400");
+        modelMap.addAttribute("Images",list);//注入图片列表
+        return "/commodity/commodity_detail";
+    }
 
 
 }

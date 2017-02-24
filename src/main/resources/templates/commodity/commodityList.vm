@@ -48,13 +48,13 @@
     #end
 
     <hr>
-    #parse("/templates/layout/page.vm")
-    <div class="footer">
-        <p>&copy; Company 2014</p>
-    </div>
+
+
 
 </div> <!-- /container -->
-
+<div class="footer">
+    #parse("/templates/layout/page.vm")
+</div>
 </body>
 </html>
 

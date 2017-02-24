@@ -1,14 +1,14 @@
 <div class="masthead">
-    <h3 class="muted" id="user_name">$!user.username</h3>
+    <h3 class="muted" id="user_name" name="user_name">$nickname</h3>
     <div class="navbar">
         <div class="navbar-inner">
             <div class="container">
                 <ul class="nav">
-                    <li class="active"><a href="/index">Home</a></li>
+                    <li class="active"><a href="/front/index">Home</a></li>
+                    <li><a href="/commodity/commodityList/1">商品浏览</a></li>
                     <li><a href="/commodity/add">添加商品</a></li>
-                    <li><a href="#">栏目2</a></li>
-                    <li><a href="#">栏目3</a></li>
-                    <li><a href="#">栏目4</a></li>
+                    <li><a href="/shop/add">我要开店</a></li>
+                    <li><a href="/shop/shop_commodityList/1">我的店铺</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             栏目5

@@ -47,4 +47,26 @@ public class UserService {
             return  null;
         return users.get(0);
     }
+
+    public UserDO selectUserByNickName(String nickname){
+        UserDOExample userDOExample= new UserDOExample();
+        UserDOExample.Criteria criteria=userDOExample.createCriteria();
+        criteria.andNicknameEqualTo(nickname);
+        List<UserDO> users=userDOMapper.selectByExample(userDOExample);
+        if(users.size()==0)
+            return  null;
+        return users.get(0);
+    }
+
+
+    public void insertUser(UserDO userDO ){
+        userDOMapper.insert(userDO);
+    }
+
+    public void updateUserByNickName(UserDO userDO){
+        UserDOExample userDOExample= new UserDOExample();
+        UserDOExample.Criteria criteria=userDOExample.createCriteria();
+        criteria.andNicknameEqualTo(userDO.getNickname());
+        userDOMapper.updateByExampleSelective(userDO,userDOExample);
+    }
 }

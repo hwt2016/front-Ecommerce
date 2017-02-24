@@ -190,8 +190,7 @@ var uploader = new plupload.Uploader({
         FileUploaded: function(up, file, info) {
             if (info.status == 200)
             {
-                document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = 'upload to oss success, object name:' + get_uploaded_object_name(file.name);
-                document.getElementById("show").innerHTML= document.getElementById("count").value+","+get_uploaded_object_name(file.name);//注释用的
+                document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '上传成功';
             }
             else
             {

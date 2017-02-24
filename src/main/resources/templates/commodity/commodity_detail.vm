@@ -13,9 +13,9 @@
 
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    <script src="../front/js/app.js"></script>
+    <script src="../../front/js/app.js"></script>
 
-    <link href="../front/css/style.css" rel="stylesheet">
+    <link href="../../front/css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -47,45 +47,19 @@
                         <div class="row-fluid">
                             <div class="span10">
                                 <div class="main-image">
-                                    <img src='http://placehold.it/550x400' />
+                                    <img src=$ImageFirst />
                                 </div>
                             </div>
                             <div class="span2 side-images">
-                                <div class="row-fluid">
-                                    <div class="span12 side-image">
-                                        <a href='javascript:;'><img src='http://placehold.it/90x80&text=Image+A' data-src="http://placehold.it/550x400&text=Image+A" /></a>
+                                #foreach($image in $Images)
+                                    #set($imgSm =$image+$imgSmall)
+                                    #set($imgBg =$image+$imgBig)
+                                    <div class="row-fluid">
+                                        <div class="span12 side-image">
+                                            <a href='javascript:;'><img src=$imgSm data-src=$image  /></a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="span12 side-image">
-                                        <a href='javascript:;'><img src='http://placehold.it/90x80&text=Image+B' data-src="http://placehold.it/550x400&text=Image+B" /></a>
-                                    </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="span12 side-image">
-                                        <a href='javascript:;'><img src='http://placehold.it/90x80&text=Image+C' data-src="http://placehold.it/550x400&text=Image+C" /></a>
-                                    </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="span12 side-image">
-                                        <a href='javascript:;'><img src='http://placehold.it/90x80&text=Image+D' data-src="http://placehold.it/550x400&text=Image+D" /></a>
-                                    </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="span12 side-image">
-                                        <a href='javascript:;'><img src='http://placehold.it/90x80&text=Image+E' data-src="http://placehold.it/550x400&text=Image+E" /></a>
-                                    </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="span12 side-image">
-                                        <a href='javascript:;'><img src='http://placehold.it/90x80&text=Image+F' data-src="http://placehold.it/550x400&text=Image+F" /></a>
-                                    </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="span12 side-image">
-                                        <a href='javascript:;'><img src='http://placehold.it/90x80&text=Image+G' data-src="http://placehold.it/550x400&text=Image+G" /></a>
-                                    </div>
-                                </div>
+                                #end
                             </div>
                         </div>
                     </div>
@@ -95,28 +69,28 @@
         <div class="span4">
             <div class="block">
                 <div class="navbar navbar-inner block-header">
-                    <div class="muted pull-left">Product Name</div>
-                    <div class="pull-right"><span class="badge badge-warning">Some short message</span></div>
+                    <div class="muted pull-left">$commodity.commodityName</div>
+                    <div class="pull-right"><span class="badge badge-warning">商品简介</span></div>
                 </div>
                 <div class="block-content collapse in">
                     <div class="span12">
-                        <h5>Short Description</h5>
-                        <p class="muted">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                        <h5>商品简介</h5>
+                        <p class="muted">$commodity.description</p>
 
                         <p>
                         <dl class="dl-horizontal">
-                            <dt>List Price</dt>
-                            <dd><s>$150.00</s></dd>
-                            <dt>Sale Price</dt>
-                            <dd>$129.99</dd>
+                            <dt>数量</dt>
+                            <dd><s>$commodity.count</s></dd>
+                            <dt>产品现价</dt>
+                            <dd>$commodity.price</dd>
                         </dl>
                         </p>
 
                         <form class="form-inline">
                             <div class="control-group">
-                                <label>Quantity</label>
+                                <label>数量</label>
                                 <input type="text" id="name" value="1" placeholder="Quantity" class="input-mini">
-                                <button type="submit" class="btn btn-danger">Add</button>
+                                <button type="submit" class="btn btn-danger">购买</button>
                             </div>
                         </form>
                     </div>

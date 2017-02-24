@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap e-Commerce Theme</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <link href="../front/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+
+    #parse("/templates/front/menu.vm")
+
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="thumbnail content-white">
+                <div class="caption">
+                    <div class="one">
+                        <h4>您的联系方式</h4>
+                        <p>
+                             #if($qq)
+                                 QQ - <a rel="nofollow" href="">$qq</a>
+                            #end
+                            #if($phone)
+                                <br>
+                                Phone - <a rel="nofollow" href="">$phone</a>
+                            #end
+                            #if(!$qq &&!$phone)
+                                暂无您的联系方式，请在右方添加
+                            #end
+                            <br>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="span8">
+            <div class="thumbnail content-white">
+                <div class="caption">
+                    <h4>我要开店</h4>
+                    <form class="form-horizontal"  action="/shop/$operateEn" method="post" enctype="multipart/form-data">
+                        <div class="control-group">
+                            <label class="control-label" for="shopname">店名</label>
+                            <div class="controls">
+                                <input type="text" id="shopname" name="shopname"  value="$!shop.shopname" placeholder="我的店名">
+                                #if ($bindingResult)
+                                    <span id="msg" style="color:red">$!bindingResult.getFieldError("shopname").getDefaultMessage()</span>
+                                #end
+                            </div>
+                        </div>
+                        #if(!$qq)
+                            <div class="control-group">
+                                <label class="control-label" for="qq">qq</label>
+                                <div class="controls">
+                                    <input type="text" id="qq" name="qq"   placeholder="QQ">
+                                </div>
+                            </div>
+                        #end
+                        #if($qq)
+                            <input type="hidden" id="qq" name="qq" value=$qq>
+                        #end
+                        #if(!$phone)
+                            <div class="control-group">
+                                <label class="control-label" for="phone">手机号码</label>
+                                <div class="controls">
+                                    <input type="text" id="phone" name="phone"   placeholder="手机号码">
+                                </div>
+                            </div>
+                        #end
+
+                        #if($phone)
+                            <input type="hidden" id="phone" name="phone" value=$phone>
+                        #end
+
+                        <div class="control-group">
+                            <label class="control-label" for="description">店铺描述</label>
+                            <div class="controls">
+                                <textarea placeholder="请简单的介绍一下自己的店铺" value="$!shop.description" name="description" id="description"></textarea>
+                                #if ($bindingResult)
+                                    <span id="msg" style="color:red">$!bindingResult.getFieldError("description").getDefaultMessage()</span>
+                                #end
+                            </div>
+                        </div>
+                        <input type="hidden" id="nickname" name="nickname" value=$nickname />
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='padding-top-10'></div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="thumbnail content-white">
+                <div class="caption">
+                    <iframe width="100%" scrolling="no" height="300px" frameborder="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Staples+Center+Los+Angeles&amp;aq=&amp;vpsrc=6&amp;g=WR143SZ&amp;ie=UTF8&amp;hq=&amp;hnear=Staples+Center+Los+Angeles&amp;t=m&amp;z=16&amp;output=embed&amp;iwloc=near" marginwidth="0" marginheight="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <hr>
+
+    <div class="footer">
+        <p>&copy; Company 2014</p>
+    </div>
+
+</div> <!-- /container -->
+
+</body>
+</html>
