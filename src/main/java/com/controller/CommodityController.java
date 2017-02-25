@@ -101,6 +101,7 @@ public class CommodityController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addCommodity(@Valid CommodityDO commodityDO, BindingResult bindingResult, ModelMap modelMap) {
         if(bindingResult.hasErrors()){
+            System.out.print("出错了");
             modelMap.addAttribute("bindingResult",bindingResult);
             return "commodity/commodity_add";
         }
@@ -109,7 +110,7 @@ public class CommodityController {
         commodityDO.setUpdatetime(new Date(System.currentTimeMillis()));
         commodityDOMapper.insert(commodityDO);
         System.out.print("添加成功");
-        return "redirect:/commodity/commodity_detail";
+        return "redirect:/commodity/commodity_detail/"+commodityDO.getId();
     }
 
     //商品细节
@@ -135,6 +136,7 @@ public class CommodityController {
         modelMap.addAttribute("imgSmall","?x-oss-process=image/resize,m_lfit,h_90,w_80");//缩图，高低比例为：90：80
         modelMap.addAttribute("imgBig","?x-oss-process=image/resize,m_lfit,h_550,w_400");
         modelMap.addAttribute("Images",list);//注入图片列表
+        modelMap.addAttribute("listSize",list.size());//图片总数
         return "/commodity/commodity_detail";
     }
 

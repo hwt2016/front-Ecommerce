@@ -110,7 +110,7 @@ public class ShopController {
         shopDO.setUpdatetime(new Date(System.currentTimeMillis()));//注入更新时间
         shopDO.setStatus(ShopStatusEnum.NORMAL.code());//注入状态
         shopDOMapper.insert(shopDO);
-        return "redirect:/commodity/commodity_detail";
+        return "redirect:/shop/shop_commodityList/1";
     }
 
     @RequestMapping(value = "/shop_commodityList/{page}")

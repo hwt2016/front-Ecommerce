@@ -96,7 +96,7 @@
                         </div>
                         <pre id="console" ></pre>
 
-                        <input hidden="hidden" id="shopId" name="shopId" value=$shopId />
+                        <input type="hidden" id="shopId" name="shopId" value=$shopId />
                         <!-- end 图片上传 -->
                         <div class="control-group">
                             <div class="controls">

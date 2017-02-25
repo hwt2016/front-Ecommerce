@@ -47,6 +47,9 @@
                             <th>编辑</th>
                         </tr>
                         <tbody>
+                            #if(!$commoditys)
+                                <p>您还没有商品，请添加一件吧</p>
+                            #end
                             #foreach($commodity in $commoditys)
                             <tr onmouseenter="this.style.backgroundColor='powderblue'" onmouseleave="this.style.backgroundColor=''">
                                 <td>$!commodity.commodityName</td>
@@ -67,8 +70,8 @@
                     </table>
                     </p>
 
-                    <p>
-                        Use this to link to reorder boards or shar eyour work with others.
+                    <p align="center">
+                        <a href="/commodity/add" class="btn btn-info btn-round btn-sm" >商品添加</a>
                     </p>
 
                 </div>
