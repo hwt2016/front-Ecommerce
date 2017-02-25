@@ -114,16 +114,18 @@ public class ShopController {
         shopDO.setUpdatetime(new Date(System.currentTimeMillis()));//注入更新时间
         shopDO.setStatus(ShopStatusEnum.NORMAL.code());//注入状态
         shopDOMapper.insert(shopDO);
-        return "redirect:/shop/shop_commodityList/1";
+        return "redirect:shop/shop_commodityList/1";
     }
 
     @RequestMapping(value = "/shop_commodityList/{page}")
     public  String selectUserShopCommodityList(@PathVariable("page") Integer page, ModelMap modelMap,HttpSession session){
+        System.out.println("******* 进入  shop_commodityList   ***********");
         String nickname = session.getAttribute("nickname").toString();
         Pager pager = new Pager(page, PageSizeConstant.pageSize);
         List<CommodityVO> commoditys = commodityService.searchCommoditysByPageAndNickName(pager,nickname);
         modelMap.addAttribute("commoditys", commoditys);
         modelMap.addAttribute("pager", pager);
-        return "/shop/shop_commodityList";
+        return "shop/shop_commodityList";
     }
 }
+

@@ -15,7 +15,7 @@ import java.util.List;
 public class ListObjects {
 
     public List<String> SelectImagesByUserDir(String dir){
-        List <String> Images= new ArrayList();
+        List <String> Images= new ArrayList<String>();
         OSSClient ossClient = new OSSClient(Constant.ENDPOINT, Constant.ACCESS_ID, Constant.ACCESS_KEY);
         ListObjectsRequest listObjectsRequest = new ListObjectsRequest("testthem");
         listObjectsRequest.setPrefix(dir+"/");

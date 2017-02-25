@@ -81,7 +81,7 @@ public class CommodityController {
         }
         commodityDO.setUpdatetime(new Date(System.currentTimeMillis()));
         commodityDOMapper.updateByPrimaryKeySelective(commodityDO);
-        return "redirect:/commodity/commodityList/1.vm";
+        return "redirect:commodity/commodityList/1.vm";
     }
 
     //添加商品
@@ -110,13 +110,13 @@ public class CommodityController {
         commodityDO.setUpdatetime(new Date(System.currentTimeMillis()));
         commodityDOMapper.insert(commodityDO);
         System.out.print("添加成功");
-        return "redirect:/commodity/commodity_detail/"+commodityDO.getId();
+        return "redirect:commodity/commodity_detail/"+commodityDO.getId();
     }
 
     //商品细节
     @RequestMapping(value = "/commodity_detail",method = RequestMethod.GET)
     public String commodity_detail(){
-        return "/commodity/commodity_detail";
+        return "commodity/commodity_detail";
     }
 
 //    //商品图片上传
@@ -137,7 +137,7 @@ public class CommodityController {
         modelMap.addAttribute("imgBig","?x-oss-process=image/resize,m_lfit,h_550,w_400");
         modelMap.addAttribute("Images",list);//注入图片列表
         modelMap.addAttribute("listSize",list.size());//图片总数
-        return "/commodity/commodity_detail";
+        return "commodity/commodity_detail";
     }
 
 
