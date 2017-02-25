@@ -29,9 +29,9 @@
 
     <!-- Jumbotron -->
     <div class="jumbotron">
-        <h1>Latest News</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <a class="btn btn-large btn-success" href="/commodity/commodityList/1">Show Products</a>
+        <h1>最新消息</h1>
+        <p class="lead">欢迎大家来到校园跳蚤</p>
+        <a class="btn btn-large btn-success" href="/commodity/commodityList/1">新品浏览</a>
     </div>
 
     <hr>
@@ -76,7 +76,7 @@
     <hr>
 
     <div class="footer">
-        <p>&copy; Company 2014</p>
+        #parse("/templates/layout/page.vm")
     </div>
 
 </div> <!-- /container -->

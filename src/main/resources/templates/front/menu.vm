@@ -4,7 +4,7 @@
         <div class="navbar-inner">
             <div class="container">
                 <ul class="nav">
-                    <li class="active"><a href="/front/index">Home</a></li>
+                    <li><a href="/front/index">首页</a></li>
                     <li><a href="/commodity/commodityList/1">商品浏览</a></li>
                     <li><a href="/commodity/add">添加商品</a></li>
                     <li><a href="/shop/add">我要开店</a></li>
@@ -31,12 +31,12 @@
 
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Pages
+                            栏目6
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="aboutus.html">About Us</a></li>
-                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="aboutus.html">栏目</a></li>
+                            <li><a href="contactus.html">栏目</a></li>
                         </ul>
                     </li>
 

@@ -90,6 +90,10 @@ public class ShopController {
         modelMap.addAttribute("operateCh", OperateEnum.ADD.code());
         String nickname=session.getAttribute("nickname").toString();//获取nickname
         UserDO userDO=userService.selectUserByNickName(nickname);//获取该用户的信息
+        ShopDO shopDO=shopService.selectShopByUser(userDO);
+        if(shopDO!=null){
+            return "redirect:/shop/shop_commodityList/1";
+        }
         modelMap.addAttribute("qq",userDO.getQq());//将用户的qq信息加入缓存
         modelMap.addAttribute("phone",userDO.getPhone());//将用户的phone信息加入缓存
         modelMap.addAttribute("userid",userDO.getId());//将用户的id加入，方便存入商店表中的userid

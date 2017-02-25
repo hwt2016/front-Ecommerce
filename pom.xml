@@ -102,9 +102,9 @@
             <version>2.4.1</version>
         </dependency>
         <dependency>
-            <groupId>alibaba</groupId>
+            <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.1.28</version>
+            <version>1.2.4</version>
         </dependency>
         <!-- end  OSS所需依赖包-->
 

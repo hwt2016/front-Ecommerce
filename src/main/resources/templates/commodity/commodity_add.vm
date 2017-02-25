@@ -86,7 +86,7 @@
                         </table>
 
                         <!-- 图片上传模块-->
-                        <h4>上传图片：</h4>
+                        <h4>可同时上传多张图片：</h4>
                         <div id="ossfile">你的浏览器不支持flash,Silverlight或者HTML5！</div>
                         <br/>
 
