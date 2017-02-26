@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Bootstrap e-Commerce Theme</title>
+    #include("title.vm")
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -114,12 +114,12 @@
     <hr>
 
     <div class="footer">
-        <p>&copy; Company 2014</p>
+        <p>@2017低端交流技术团队制作</p>
     </div>
 
 </div> <!-- /container -->
 
 </body>
-<script type="text/javascript" src="/plupload/plupload.full.min.js"></script>
-<script type="text/javascript" src="/plupload/upload.js"></script>
+<script type="text/javascript" src="../plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="../plupload/upload.js"></script>
 </html>

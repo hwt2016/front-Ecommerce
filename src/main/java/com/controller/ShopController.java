@@ -92,7 +92,7 @@ public class ShopController {
         UserDO userDO=userService.selectUserByNickName(nickname);//获取该用户的信息
         ShopDO shopDO=shopService.selectShopByUser(userDO);
         if(shopDO!=null){
-            return "redirect:/shop/shop_commodityList/1";
+            return "redirect:../shop/shop_commodityList/1";//！！！！不清楚为什么这里需要加..才能找到该页面
         }
         modelMap.addAttribute("qq",userDO.getQq());//将用户的qq信息加入缓存
         modelMap.addAttribute("phone",userDO.getPhone());//将用户的phone信息加入缓存

@@ -110,7 +110,7 @@ public class CommodityController {
         commodityDO.setUpdatetime(new Date(System.currentTimeMillis()));
         commodityDOMapper.insert(commodityDO);
         System.out.print("添加成功");
-        return "redirect:commodity/commodity_detail/"+commodityDO.getId();
+        return "redirect:../commodity/commodity_detail/"+commodityDO.getId();
     }
 
     //商品细节
@@ -137,6 +137,7 @@ public class CommodityController {
         modelMap.addAttribute("imgBig","?x-oss-process=image/resize,m_lfit,h_550,w_400");
         modelMap.addAttribute("Images",list);//注入图片列表
         modelMap.addAttribute("listSize",list.size());//图片总数
+        modelMap.addAttribute("cmoName",commodityDO.getCommodityName());//该商品名称
         return "commodity/commodity_detail";
     }
 

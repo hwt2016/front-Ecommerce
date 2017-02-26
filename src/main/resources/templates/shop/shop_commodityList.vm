@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Bootstrap e-Commerce Theme</title>
+    #include("title.vm")
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -30,7 +30,7 @@
     <div class="row-fluid">
         <div class="block">
             <div class="navbar navbar-inner block-header">
-                <div class="muted pull-left">Reorder Links</div>
+                <div class="muted pull-left">我的商品列表</div>
                 <div class="pull-right">Where is my order?</div>
             </div>
             <div class="block-content collapse in">
@@ -62,7 +62,7 @@
                                     <!--<a href="studentList.htm?action=StudentAction&event_submit_do_delete=any&id=$student.id&_tb_token_= $!csrfToken.ajaxUniqueToken" class="btn btn-danger btn-round btn-sm" onclick="alert('确定删除？')">删除</a>-->
                                 </td>
                                 <td align="right">
-                                    <a href="/commodity/edit/$commodity.id" class="btn btn-info btn-round btn-sm">编辑</a>
+                                    <a href="#" class="btn btn-info btn-round btn-sm">编辑（这个功能待定）</a>
                                 </td>
                             </tr>
                             #end
