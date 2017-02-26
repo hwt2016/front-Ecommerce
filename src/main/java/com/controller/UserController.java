@@ -100,8 +100,12 @@ public class UserController {
         if(user !=null && userDO.getPassword().equals(user.getPassword())){
             session.setAttribute("nickname",userDO.getNickname());
             return "redirect:/front/index";
-        }else
+        }else{
+            System.out.print("用户名和密码输入不正确");
+            modelMap.addAttribute("msg","用户名和密码输入不正确");
             return "user/login";
+        }
+
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
@@ -120,7 +124,7 @@ public class UserController {
         else
         {
             modelMap.addAttribute("msg","用户名已经存在");
-            return "login";//如果已注册则需重新注册(该步骤不清楚是否需要重新写页面，留待研究）
+            return "user/login";//如果已注册则需重新注册(该步骤不清楚是否需要重新写页面，留待研究）
         }
     }
 
