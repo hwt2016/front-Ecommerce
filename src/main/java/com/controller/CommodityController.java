@@ -110,7 +110,7 @@ public class CommodityController {
         commodityDO.setUpdatetime(new Date(System.currentTimeMillis()));
         commodityDOMapper.insert(commodityDO);
         System.out.print("添加成功");
-        return "redirect:../commodity/commodity_detail/"+commodityDO.getId();
+        return "redirect:/commodity_detail/"+commodityDO.getId();
     }
 
     //商品细节

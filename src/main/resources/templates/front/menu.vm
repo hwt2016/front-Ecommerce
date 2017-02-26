@@ -6,7 +6,6 @@
                 <ul class="nav">
                     <li><a href="/front/index">首页</a></li>
                     <li><a href="/commodity/commodityList/1">商品浏览</a></li>
-                    <li><a href="/commodity/add">添加商品</a></li>
                     <li><a href="/shop/add">我要开店</a></li>
                     <li><a href="/shop/shop_commodityList/1">我的店铺</a></li>
                     <li class="dropdown">

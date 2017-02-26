@@ -92,7 +92,7 @@ public class ShopController {
         UserDO userDO=userService.selectUserByNickName(nickname);//获取该用户的信息
         ShopDO shopDO=shopService.selectShopByUser(userDO);
         if(shopDO!=null){
-            return "redirect:../shop/shop_commodityList/1";//！！！！不清楚为什么这里需要加..才能找到该页面
+            return "redirect:shop_commodityList/1";//redirect重新发起请求
         }
         modelMap.addAttribute("qq",userDO.getQq());//将用户的qq信息加入缓存
         modelMap.addAttribute("phone",userDO.getPhone());//将用户的phone信息加入缓存
@@ -114,12 +114,18 @@ public class ShopController {
         shopDO.setUpdatetime(new Date(System.currentTimeMillis()));//注入更新时间
         shopDO.setStatus(ShopStatusEnum.NORMAL.code());//注入状态
         shopDOMapper.insert(shopDO);
-        return "redirect:shop/shop_commodityList/1";
+        return "redirect:shop_commodityList/1";
     }
 
     @RequestMapping(value = "/shop_commodityList/{page}")
     public  String selectUserShopCommodityList(@PathVariable("page") Integer page, ModelMap modelMap,HttpSession session){
         String nickname = session.getAttribute("nickname").toString();
+        UserDO userDO =userService.selectUserByNickName(nickname);
+        ShopDO shopDO =shopService.selectShopByUser(userDO);
+        if(shopDO==null)
+        {
+            return "redirect:/shop/add";
+        }
         Pager pager = new Pager(page, PageSizeConstant.pageSize);
         List<CommodityVO> commoditys = commodityService.searchCommoditysByPageAndNickName(pager,nickname);
         modelMap.addAttribute("commoditys", commoditys);
