@@ -119,7 +119,6 @@ public class ShopController {
 
     @RequestMapping(value = "/shop_commodityList/{page}")
     public  String selectUserShopCommodityList(@PathVariable("page") Integer page, ModelMap modelMap,HttpSession session){
-        System.out.println("******* 进入  shop_commodityList   ***********");
         String nickname = session.getAttribute("nickname").toString();
         Pager pager = new Pager(page, PageSizeConstant.pageSize);
         List<CommodityVO> commoditys = commodityService.searchCommoditysByPageAndNickName(pager,nickname);

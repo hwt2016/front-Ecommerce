@@ -28,6 +28,10 @@ public class CommodityVO {
 
     private Date updatetime;
 
+    private String qq;
+
+    private Long phone;
+
     public Long getId() {
         return id;
     }
@@ -122,5 +126,21 @@ public class CommodityVO {
 
     public void setUpdatetime(Date updatetime) {
         this.updatetime = updatetime;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public Long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Long phone) {
+        this.phone = phone;
     }
 }

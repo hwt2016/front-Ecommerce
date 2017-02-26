@@ -1,6 +1,7 @@
 package com.service;
 
 import com.em.UserStatusEnum;
+import com.entity.ShopDO;
 import com.entity.UserDO;
 import com.entity.UserDOExample;
 import com.mapper.UserDOMapper;
@@ -68,5 +69,16 @@ public class UserService {
         UserDOExample.Criteria criteria=userDOExample.createCriteria();
         criteria.andNicknameEqualTo(userDO.getNickname());
         userDOMapper.updateByExampleSelective(userDO,userDOExample);
+    }
+
+    //通过店铺的信息获取用户信息
+    public UserDO selectUserByShop(ShopDO shopDO){
+        UserDOExample userDOExample =new UserDOExample();
+        UserDOExample.Criteria criteria = userDOExample.createCriteria();
+        criteria.andIdEqualTo(shopDO.getUserId());//设置条件：userID
+        List<UserDO> userDOS=userDOMapper.selectByExample(userDOExample);
+        if(userDOS.size()==0)
+            return null;
+        return userDOS.get(0);
     }
 }

@@ -88,9 +88,9 @@
 
                         <form class="form-inline">
                             <div class="control-group">
-                                <label>数量</label>
-                                <input type="text" id="name" value="1" placeholder="Quantity" class="input-mini">
-                                <button type="submit" class="btn btn-danger">购买</button>
+                                <p align="center">
+                                    <a href=$qq  align="center" class="btn btn-danger" >联系店家</a>
+                                </p>
                             </div>
                         </form>
                     </div>

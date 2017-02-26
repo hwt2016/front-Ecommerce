@@ -128,8 +128,13 @@ public class CommodityController {
 
     @RequestMapping(value = "/commodity_detail/{commodityId}")
     public String product_detail(@PathVariable ("commodityId") String commodityId,ModelMap modelMap){
-        CommodityDO commodityDO = commodityDOMapper.selectByPrimaryKey(Long.parseLong(commodityId));
-        modelMap.addAttribute("commodity",commodityDO);
+        CommodityDO commodityDO = commodityDOMapper.selectByPrimaryKey(Long.parseLong(commodityId));//根据商品id找到商品
+        ShopDO shopDO = shopService.selectShopByCommodity(commodityDO);//根据商品信息找到所属店铺
+        System.out.print("店主ID="+shopDO.getUserId());
+        UserDO userDO = userService.selectUserByShop(shopDO);//根据店铺信息找到店主信息
+        modelMap.addAttribute("qq","tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin="+userDO.getQq());//注入店主qq
+        modelMap.addAttribute("phone",userDO.getPhone());//注入店主phone
+        modelMap.addAttribute("commodity",commodityDO);//注入商品信息
         ListObjects oss= new ListObjects();//连接OSS服务器
         List <String> list=  oss.SelectImagesByUserDir(commodityDO.getCommodityImage());//获取图片列表
         modelMap.addAttribute("ImageFirst",list.get(0));//获取首张展示的图片

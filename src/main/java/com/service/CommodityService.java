@@ -44,9 +44,10 @@ public class CommodityService {
         List<CommodityVO> commodityVOs = new ArrayList<>();
         if (commodityDOs != null) {
             for (CommodityDO commodityDO : commodityDOs) {
-                ShopDO shopDO = shopDOMapper.selectByPrimaryKey(commodityDO.getShopId());
+                ShopDO shopDO = shopDOMapper.selectByPrimaryKey(commodityDO.getShopId());//通过shopid获取店铺信息
+                UserDO userDO = userService.selectUserByShop(shopDO);//通过店铺信息获取用户信息
                 CategoryDO categoryDO = categoryDOMapper.selectByPrimaryKey(commodityDO.getCategoryId());
-                CommodityVO commodityVO = CommodityConverter.convert(commodityDO, shopDO, categoryDO);
+                CommodityVO commodityVO = CommodityConverter.convert(commodityDO, shopDO, categoryDO,userDO);//将数据进行集成
                 commodityVOs.add(commodityVO);
             }
         }
@@ -60,16 +61,16 @@ public class CommodityService {
         CommodityDOExample commodityDOExample = new CommodityDOExample();
         CommodityDOExample.Criteria criteria = commodityDOExample.createCriteria();
         criteria.andShopIdEqualTo(shopDO.getId());
-        pager.setCount(commodityDOMapper.countByExample(commodityDOExample));
+        pager.setCount(commodityDOMapper.countByExample(commodityDOExample));//统计店铺商品总数
         commodityDOExample.setLimitStart(pager.getBegin());
         commodityDOExample.setLimitEnd(pager.getLength());
-        commodityDOExample.setOrderByClause("updatetime DESC");
+        commodityDOExample.setOrderByClause("updatetime DESC");//按照时间最近上架商品排序
         List<CommodityDO> commodityDOs = commodityDOMapper.selectByExample(commodityDOExample);
         List<CommodityVO> commodityVOs = new ArrayList<>();
         if (commodityDOs != null) {
             for (CommodityDO commodityDO : commodityDOs) {
                 CategoryDO categoryDO = categoryDOMapper.selectByPrimaryKey(commodityDO.getCategoryId());
-                CommodityVO commodityVO = CommodityConverter.convert(commodityDO, shopDO, categoryDO);
+                CommodityVO commodityVO = CommodityConverter.convert(commodityDO, shopDO, categoryDO,userDO);//将数据进行集成
                 commodityVOs.add(commodityVO);
             }
         }

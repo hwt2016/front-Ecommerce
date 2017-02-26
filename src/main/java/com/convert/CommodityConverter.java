@@ -3,6 +3,7 @@ package com.convert;
 import com.entity.CategoryDO;
 import com.entity.CommodityDO;
 import com.entity.ShopDO;
+import com.entity.UserDO;
 import com.vo.CommodityVO;
 
 /**
@@ -10,14 +11,20 @@ import com.vo.CommodityVO;
  */
 public class CommodityConverter {
 
-    public static CommodityVO convert(CommodityDO commodityDO, ShopDO shopDO, CategoryDO categoryDO) {
+    public static CommodityVO convert(CommodityDO commodityDO, ShopDO shopDO, CategoryDO categoryDO , UserDO userDO) {
         String shopname = null;
         String categoryname = null;
+        String qq=null;
+        Long phone=null;
         if (shopDO != null) {
             shopname = shopDO.getShopname();
         }
         if (categoryDO != null) {
             categoryname = categoryDO.getCategoryName();
+        }
+        if (userDO !=null) {
+            qq=userDO.getQq();
+            phone=userDO.getPhone();
         }
         CommodityVO commodityVO = new CommodityVO();
         commodityVO.setId(commodityDO.getId());
@@ -32,6 +39,8 @@ public class CommodityConverter {
         commodityVO.setCategoryName(categoryname);
         commodityVO.setCreatetime(commodityDO.getCreatetime());
         commodityVO.setUpdatetime(commodityDO.getUpdatetime());
+        commodityVO.setQq(qq);
+        commodityVO.setPhone(phone);
         return commodityVO;
     }
 

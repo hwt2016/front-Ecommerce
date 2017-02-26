@@ -1,6 +1,7 @@
 package com.service;
 
 import com.convert.ShopConverter;
+import com.entity.CommodityDO;
 import com.entity.ShopDO;
 import com.entity.ShopDOExample;
 import com.entity.UserDO;
@@ -49,6 +50,17 @@ public class ShopService {
         ShopDOExample shopDOExample= new ShopDOExample();
         ShopDOExample.Criteria criteria=shopDOExample.createCriteria();
         criteria.andUserIdEqualTo(userDO.getId());//根据用户的id找到店铺
+        List<ShopDO> shopDOS=shopDOMapper.selectByExample(shopDOExample);
+        if(shopDOS.size()==0)
+            return  null;
+        return shopDOS.get(0);//由于店铺唯一，所以返回一个即可
+    }
+
+    //通过商品的信息获取店铺信息
+    public ShopDO selectShopByCommodity(CommodityDO commodityDO){
+        ShopDOExample shopDOExample= new ShopDOExample();
+        ShopDOExample.Criteria criteria=shopDOExample.createCriteria();
+        criteria.andIdEqualTo(commodityDO.getShopId());//根据商品所属的shopid找到店铺
         List<ShopDO> shopDOS=shopDOMapper.selectByExample(shopDOExample);
         if(shopDOS.size()==0)
             return  null;
