@@ -110,7 +110,7 @@ public class CommodityController {
         commodityDO.setUpdatetime(new Date(System.currentTimeMillis()));
         commodityDOMapper.insert(commodityDO);
         System.out.print("添加成功");
-        return "redirect:/commodity_detail/"+commodityDO.getId();
+        return "redirect:commodity_detail/"+commodityDO.getId();
     }
 
     //商品细节
@@ -136,7 +136,7 @@ public class CommodityController {
         modelMap.addAttribute("phone",userDO.getPhone());//注入店主phone
         modelMap.addAttribute("commodity",commodityDO);//注入商品信息
         ListObjects oss= new ListObjects();//连接OSS服务器
-        List <String> list=  oss.SelectImagesByUserDir(commodityDO.getCommodityImage());//获取图片列表
+        List <String> list=  oss.SelectImagesByUserDir(userDO.getNickname());//获取图片列表
         modelMap.addAttribute("ImageFirst",list.get(0));//获取首张展示的图片
         modelMap.addAttribute("imgSmall","?x-oss-process=image/resize,m_lfit,h_90,w_80");//缩图，高低比例为：90：80
         modelMap.addAttribute("imgBig","?x-oss-process=image/resize,m_lfit,h_550,w_400");
