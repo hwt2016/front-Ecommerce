@@ -19,8 +19,8 @@ public class PolicyController {
     @RequestMapping(value = "/createPolicy/{dir}")
     @ResponseBody
     public String createPolicy(@PathVariable("dir") String dir, HttpSession session){
-        String  nickname=session.getAttribute("nickname").toString();
-        String userdir=nickname+"/"+dir;
+        String  nickname=session.getAttribute("nickname").toString();//获取用户nickname
+        String userdir=nickname+"/"+dir;//按照nickname+commodityName即（nickname/commodityName）目录存储
         System.out.println("userdir="+userdir);
         return PostObjectPolicy.createPolicy(nickname+"/"+dir+"/").toJSONString();
     }

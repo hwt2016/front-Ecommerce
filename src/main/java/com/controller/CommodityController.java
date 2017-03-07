@@ -58,6 +58,7 @@ public class CommodityController {
         Pager pager = new Pager(page, PageSizeConstant.pageSize);
         List<CommodityVO> commoditys = commodityService.searchCommoditysByPage(pager);
         modelMap.addAttribute("commoditys", commoditys);
+        modelMap.addAttribute("imgSmall","?x-oss-process=image/resize,m_pad,h_200,w_300");//缩图，高低比例为：230：200
         modelMap.addAttribute("pager", pager);
         return "commodity/commodityList";
     }

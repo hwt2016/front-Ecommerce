@@ -1,6 +1,7 @@
 <li class="span3">
+    #set($imgSm =$commodity.commodityImage+$imgSmall)
     <div class="thumbnail">
-        <img alt="230x200" src="http://placehold.it/230x200">
+        <img alt="230x200" src=$imgSm>
         <div class="caption">
             #set($datasrc="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin="+$commodity.qq)
             <h3>$!commodity.commodityName $!{velocityCount}</h3>
