@@ -109,7 +109,10 @@ public class CommodityController {
         ListObjects oss= new ListObjects();//连接OSS服务器
         List <String> list=  oss.SelectImagesByUserDir(nickname+"/"+commodityDO.getCommodityName());//获取图片列表
         System.out.println("list:"+list);
-        commodityDO.setCommodityImage(list.get(0));//取出第一张图存到路径中
+        if(list==null)
+            commodityDO.setCommodityImage("http://schoolcommerce.oss-cn-hangzhou.aliyuncs.com/1.png");//存储首张图片
+        else
+            commodityDO.setCommodityImage(list.get(0));//取出第一张图存到路径中
         commodityDO.setCreatetime(new Date(System.currentTimeMillis()));
         commodityDO.setUpdatetime(new Date(System.currentTimeMillis()));
         commodityDOMapper.insert(commodityDO);
@@ -141,11 +144,14 @@ public class CommodityController {
         modelMap.addAttribute("commodity",commodityDO);//注入商品信息
         ListObjects oss= new ListObjects();//连接OSS服务器
         List <String> list=  oss.SelectImagesByUserDir(userDO.getNickname()+"/"+commodityDO.getCommodityName());//获取图片列表
-        modelMap.addAttribute("ImageFirst",list.get(0));//获取首张展示的图片
+        modelMap.addAttribute("ImageFirst",commodityDO.getCommodityImage());//获取首张展示的图片
         modelMap.addAttribute("imgSmall","?x-oss-process=image/resize,m_lfit,h_90,w_80");//缩图，高低比例为：90：80
         modelMap.addAttribute("imgBig","?x-oss-process=image/resize,m_lfit,h_550,w_400");
         modelMap.addAttribute("Images",list);//注入图片列表
-        modelMap.addAttribute("listSize",list.size());//图片总数
+        if(list==null)
+            modelMap.addAttribute("listSize","0");//图片总数
+        else
+            modelMap.addAttribute("listSize",list.size());//图片总数
         modelMap.addAttribute("cmoName",commodityDO.getCommodityName());//该商品名称
         return "commodity/commodity_detail";
     }

@@ -24,11 +24,14 @@ public class ListObjects {
         // 遍历所有Object
         System.out.println("Objects:");
         int count=0;
-        for (OSSObjectSummary objectSummary : listing.getObjectSummaries()) {
-            System.out.println(objectSummary.getKey());
-//            if(objectSummary.getKey().toString().equals(""))
-            Images.add("http://testthem.oss-cn-hangzhou.aliyuncs.com/"+objectSummary.getKey().toString());
-        }
+        if(listing.getObjectSummaries().size()==0)
+            Images=null;
+        else
+            for (OSSObjectSummary objectSummary : listing.getObjectSummaries()) {
+                System.out.println(objectSummary.getKey());
+    //            if(objectSummary.getKey().toString().equals(""))
+                Images.add("http://testthem.oss-cn-hangzhou.aliyuncs.com/"+objectSummary.getKey().toString());
+             }
 
         // 关闭client
         ossClient.shutdown();
