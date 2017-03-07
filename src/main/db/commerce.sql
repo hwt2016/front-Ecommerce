@@ -127,6 +127,7 @@ CREATE TABLE `user` (
   `nickname` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
   `phone` bigint(11) NOT NULL,
+  `qq` varchar(20) NOT NULL,
   `email` varchar(20) DEFAULT NULL,
   `school` varchar(30) DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,

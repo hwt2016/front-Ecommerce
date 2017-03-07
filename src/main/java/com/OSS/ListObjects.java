@@ -26,6 +26,7 @@ public class ListObjects {
         int count=0;
         for (OSSObjectSummary objectSummary : listing.getObjectSummaries()) {
             System.out.println(objectSummary.getKey());
+//            if(objectSummary.getKey().toString().equals(""))
             Images.add("http://testthem.oss-cn-hangzhou.aliyuncs.com/"+objectSummary.getKey().toString());
         }
 
